@@ -1,0 +1,25 @@
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+venv/
+.venv/
+env/
+
+# Raw Test & Uploaded Flight Logs
+*.bin
+*.ulg
+*.bfl
+*.bbl
+uploads/
+
+# Converted Output Datasets
+*.uts.csv
+*.uts.parquet
+*.parquet
+outputs/
+
+# Environment Variables
+.env
