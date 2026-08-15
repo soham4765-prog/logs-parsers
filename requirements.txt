@@ -1,0 +1,31 @@
+# ====================================================================
+# FastAPI Backend & Server
+# ====================================================================
+fastapi>=0.100.0
+uvicorn[standard]>=0.23.0
+python-multipart>=0.0.6     # Required for handling file uploads (multipart/form-data)
+
+# ====================================================================
+# Drone Telemetry Log Parsers
+# ====================================================================
+pymavlink>=2.4.30           # ArduPilot / Pixhawk (.bin Dataflash logs)
+pyulog>=1.0.0               # PX4 (.ulg logs)
+orangebox>=0.1.0            # Betaflight / SpeedyBee (.bfl / .bbl Blackbox logs)
+
+# ====================================================================
+# Data Processing & Normalization Engine (UTS)
+# ====================================================================
+pandas>=2.0.0
+numpy>=1.24.0
+pyarrow>=14.0.0             # Parquet columnar storage export/import
+
+# ====================================================================
+# Deterministic Analytics & Signal Processing
+# ====================================================================
+scipy>=1.10.0               # FFT (Fast Fourier Transform) vibration analysis
+scikit-learn>=1.3.0         # Machine learning anomaly detection (Isolation Forest)
+
+# ====================================================================
+# Visualizations & Plotting (EDA / Dashboards)
+# ====================================================================
+plotly>=5.15.0
