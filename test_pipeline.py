@@ -34,7 +34,7 @@ except ImportError:
 # ---------------------------------------------------------------------------
 # Core Flight Log Processor
 # ---------------------------------------------------------------------------
-def process_flight_log(file_path: str, output_dir: str = None) -> bool:
+def process_flight_log(file_path: str, outputs_dir: str = None) -> bool:
     file_path = os.path.abspath(file_path)
     base_name = Path(file_path).name
 
@@ -83,10 +83,10 @@ def process_flight_log(file_path: str, output_dir: str = None) -> bool:
     print("-" * 65)
 
     # 6. Determine output paths and export
-    if output_dir:
-        os.makedirs(output_dir, exist_ok=True)
-        parquet_out = os.path.join(output_dir, f"{base_name}.uts.parquet")
-        csv_out = os.path.join(output_dir, f"{base_name}.uts.csv")
+    if outputs_dir:
+        os.makedirs(outputs_dir, exist_ok=True)
+        parquet_out = os.path.join(outputs_dir, f"{base_name}.uts.parquet")
+        csv_out = os.path.join(outputs_dir, f"{base_name}.uts.csv")
     else:
         parquet_out = file_path + ".uts.parquet"
         csv_out = file_path + ".uts.csv"
@@ -111,6 +111,7 @@ if __name__ == "__main__":
     else:
         # Default fallback test path
         target_path = r"D:\logs parser\tests\2 01-01-1980 05-30-00.bin"
+    outputs_dir = r"D:\logs parser\outputs"
 
     if os.path.isdir(target_path):
         supported_exts = ["*.bin", "*.bfl", "*.bbl", "*.ulg", "*.csv"]
@@ -128,4 +129,4 @@ if __name__ == "__main__":
             print(f"\n[{idx}/{len(target_files)}]")
             process_flight_log(f)
     else:
-        process_flight_log(target_path)
+        process_flight_log(target_path,outputs_dir)
