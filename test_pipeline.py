@@ -111,22 +111,44 @@ if __name__ == "__main__":
     else:
         # Default fallback test path
         target_path = r"D:\logs parser\tests\2 01-01-1980 05-30-00.bin"
+
+    # Output directory
     outputs_dir = r"D:\logs parser\outputs"
+
+    # Create output directory if it doesn't exist
+    os.makedirs(outputs_dir, exist_ok=True)
 
     if os.path.isdir(target_path):
         supported_exts = ["*.bin", "*.bfl", "*.bbl", "*.ulg", "*.csv"]
+
         found_files = []
+
         for ext in supported_exts:
-            found_files.extend(glob.glob(os.path.join(target_path, ext)))
+            found_files.extend(
+                glob.glob(os.path.join(target_path, ext))
+            )
 
         target_files = [
-            f for f in found_files 
-            if not f.endswith(".uts.csv") and not f.endswith(".uts.parquet")
+            f for f in found_files
+            if not f.endswith(".uts.csv")
+            and not f.endswith(".uts.parquet")
         ]
 
         print(f"[*] Found {len(target_files)} flight logs to convert in: {target_path}")
+        print(f"[*] Output directory: {outputs_dir}")
+
         for idx, f in enumerate(target_files, 1):
             print(f"\n[{idx}/{len(target_files)}]")
-            process_flight_log(f)
+
+            process_flight_log(
+                f,
+                outputs_dir=outputs_dir
+            )
+
     else:
-        process_flight_log(target_path,outputs_dir)
+        print(f"[*] Output directory: {outputs_dir}")
+
+        process_flight_log(
+            target_path,
+            outputs_dir=outputs_dir
+        )
